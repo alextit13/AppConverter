@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">AppConverter</string>
+    <string name="hint_1">Заказ №</string>
+    <string name="hint_2">Дата создания заказа</string>
+    <string name="hint_3">Заказчик (ФИО)</string>
+    <string name="hint_4">Телефон Заказчика</string>
+    <string name="hint_5">Дата исполнения заказа</string>
+    <string name="hint_6">Адрес доставки</string>
+    <string name="hint_7">Тема торта</string>
+    <string name="hint_8">Основа торта (№ по каталогу)</string>
+    <string name="hint_9">Начинка торта (№ по каталогу)</string>
+    <string name="hint_10">Количество ярусов, подставка, залоговая стоимость подставки</string>
+    <string name="hint_11">Вес торта (кг)</string>
+    <string name="hint_12">Цена торта (за кг)</string>
+    <string name="hint_13">Сумма торта</string>
+    <string name="hint_14">Дополнительный декор торта</string>
+    <string name="hint_15">Надпись на торте (цвет)</string>
+    <string name="hint_16">Надпись на торте (текст)</string>
+    <string name="hint_17">Надпись на торте (вид исполнения)</string>
+    <string name="hint_18">Открытка белая из мастики (размер)</string>
+    <string name="hint_19">Буквы вырубленые из мастики (шт/руб)</string>
+    <string name="hint_20">Всего за прочее (руб)</string>
+    <string name="hint_21">Упаковка (№ по каталогу)</string>
+    <string name="hint_22">Упаковка (декорированная подложка № по каталогу)</string>
+    <string name="hint_23">Всего за упаковку (руб)</string>
+    <string name="hint_24">Доставка (адрес)</string>
+    <string name="hint_25">Доставка (время доставки)</string>
+    <string name="hint_26">Доставка (контактное лицо)</string>
+    <string name="hint_27">Доставка (телефон)</string>
+    <string name="hint_28">Всего за доставку (руб)</string>
+    <string name="hint_29">К оплате ИТОГО (руб)</string>
+    <string name="hint_30">Заказ принял</string>
+    <string name="button_text_save">Сохранить</string>
+    <string name="button_text_send">Отправить</string>
+    <string name="button_text_clean">Очистить</string>
+</resources>
