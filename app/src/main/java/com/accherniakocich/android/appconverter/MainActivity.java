@@ -2,7 +2,9 @@ package com.accherniakocich.android.appconverter;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.os.Bundle;
@@ -13,11 +15,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfWriter;
 import android.os.Environment;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URLEncoder;
 
 public class MainActivity extends Activity {
 
@@ -38,6 +47,7 @@ public class MainActivity extends Activity {
             s21,s22,s23,s24,s25,s26,s27,s28,s29,s30;
 
     private static final String LOG_TAG = "MyLogs";
+    public static final String FONT = "fonts/FreeSans.ttf";
 
 
     @Override
@@ -88,7 +98,6 @@ public class MainActivity extends Activity {
             }
         });
         button_send = (Button)findViewById(R.id.button_send);
-        button_send.setEnabled(false);
         button_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +118,11 @@ public class MainActivity extends Activity {
     }
 
     private void send() {
+        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        emailIntent.setType("*/*");
 
+        emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(Environment.getExternalStorageDirectory()+"/mypdf.pdf")));//path of video
+        startActivity(Intent.createChooser(emailIntent, "Send file..."));
     }
 
     private void save() {
@@ -121,17 +134,30 @@ public class MainActivity extends Activity {
             Log.d(LOG_TAG,"We don't have permission so prompt the user");
             ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
         }else{
-            Document document = new Document();
+            Document document;
             String outhPath = Environment.getExternalStorageDirectory()+"/mypdf.pdf";
             try {
+                /*PdfWriter.getInstance(document, new FileOutputStream(outhPath));
+                document.open();
+                document.add(new Paragraph("Тут какой-то текст"));
+                document.close();
+                Log.d(LOG_TAG,"saved");*/
+
+                document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream(outhPath));
                 document.open();
-                document.add(new Paragraph(ed1.getText().toString()));
+                //BaseFont bfComic = BaseFont.createFont("fonts/myfont.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
+                Font font = new Font (BaseFont.createFont(BaseFont.COURIER,"utf-8",true));
+                document.add(new Paragraph("English Русский .",font));
+
                 document.close();
-                Log.d(LOG_TAG,"saved");
+
             } catch (DocumentException e) {
                 e.printStackTrace();
             } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
